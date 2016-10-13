@@ -1,5 +1,11 @@
 <section class="mainbar">
   <section class="matter">
+    <!--<script src="//d3js.org/d3.v3.min.js"></script>-->
+    <style>
+      text {
+        font: 10px sans-serif;
+      }
+    </style>
     <div class="container">
       <div class="row">
         <div class="widget wviolet">
@@ -14,22 +20,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <style>
-
-            .bar {
-              fill: steelblue;
-            }
-
-            .bar:hover {
-              fill: brown;
-            }
-
-            .axis--x path {
-              display: none;
-            }
-
-          </style>
-          <svg width="960" height="500"></svg>
+          <div id="circles"></div>
 
         </div>
       </div>
