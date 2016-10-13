@@ -1,0 +1,26 @@
+<nav class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-header">
+    <a href="/" class="navbar-brand"><span class="brand-title">{{vm.navline.title}}</span></a>
+    <a class="btn navbar-btn navbar-toggle" ng-click="isCollapsed = !isCollapsed">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
+  </div>
+  <div class="navbar-collapse collapse" uib-collapse="isCollapsed">
+    <div class="pull-right navbar-logo">
+      <ul class="nav navbar-nav pull-right">
+        <li class="dropdown dropdown-big">
+          <a href="https://d3js.org/" target="_blank">
+            <img src="images/d3.png" />
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/zainmustafa/d3app" target="_blank">
+            <img class="img-rounded img-circle" src="images/git.png" />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
