@@ -13,7 +13,10 @@
             <div class="clearfix"></div>
           </div>-->
           <select ng-model="vm.yAxis" ng-change="vm.reDraw();">
-            <option ng-repeat="x in vm.properties" value="{{x}}">{{x}}</option>
+            <option ng-repeat="y in vm.properties" value="{{y}}">{{y}}</option>
+          </select>
+          <select ng-model="vm.xAxis" ng-change="vm.reDraw();">
+            <option ng-repeat="x in vm.yAxisArray" value="{{x}}">{{x}}</option>
           </select>
         </div>
       </div>
