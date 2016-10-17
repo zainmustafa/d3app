@@ -12,6 +12,9 @@
           <div class="widget-foot">
             <div class="clearfix"></div>
           </div>-->
+          <select ng-model="vm.yAxis" ng-change="vm.reDraw();">
+            <option ng-repeat="x in vm.properties" value="{{x}}">{{x}}</option>
+          </select>
         </div>
       </div>
       <div class="row">
