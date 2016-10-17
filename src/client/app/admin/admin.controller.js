@@ -10,9 +10,17 @@
   function AdminController(logger,$q) {
     var vm = this;
     vm.title = 'BarChart';
-    vm.properties = [];
     vm.yAxis = "Walc";
     vm.xAxis = "guardian";
+    vm.properties = [
+      "Dalc",
+      "G3",
+      "Walc",
+      "age",
+      "failures",
+      "studytime"
+    ];
+    vm.yAxisArray = ["ExtremeValue", "failures", "guardian", "reason"];
     activate();
 
     function activate() {
@@ -66,7 +74,7 @@
       svg.call(tip);
 
       d3.csv("app/csv/student.csv", type, function(error, data) {
-        vm.properties = Object.getOwnPropertyNames(data[0]).sort()
+        // vm.properties = Object.getOwnPropertyNames(data[0]).sort();
         debugger;
         x.domain(data.map(function(d) { return d[vm.xAxis]; }));
         y.domain([0, d3.max(data, function(d) { return d[vm.yAxis]; })]);
@@ -78,6 +86,7 @@
 
         svg.append("g")
           .attr("class", "y axis")
+
           .call(yAxis)
           .append("text")
           .attr("transform", "rotate(-90)")
@@ -92,10 +101,14 @@
           .attr("class", "bar")
           .attr("x", function(d) { return x(d[vm.xAxis]); })
           .attr("width", x.rangeBand())
-          .attr("y", function(d) { return y(d[vm.yAxis]); })
-          .attr("height", function(d) { return height - y(d[vm.yAxis]); })
           .on('mouseover', tip.show)
           .on('mouseout', tip.hide)
+          .attr("y", height)
+          .transition()
+          .delay(500)
+          .attr("y", function(d) { return y(d[vm.yAxis]); })
+          .attr("height", function(d) { return height - y(d[vm.yAxis]); })
+
 
       });
 
