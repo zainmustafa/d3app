@@ -22,61 +22,56 @@
       });
     }
 
-    function loadCSV() {
 
-      var diameter = 960,
-        format = d3.format(",d"),
-        color = d3.scale.category20c();
+    function loadCSV(){
+
+      /*Source : https://jrue.github.io/coding/2014/exercises/basicbubblepackchart/*/
+
+      var diameter = 500, //max size of the bubbles
+        color    = d3.scale.category20b(); //color category
 
       var bubble = d3.layout.pack()
         .sort(null)
         .size([diameter, diameter])
         .padding(1.5);
 
-      var svg = d3.select("#circles").append("svg:svg")
-        .attr("width", diameter)
-        .attr("height", diameter)
+      var svg = d3.select("svg")
         .attr("class", "bubble");
 
-      d3.json("app/csv/flare.json", function(error, root) {
-        if (error) throw error;
+      d3.csv("app/csv/student.csv", function(error, data){
 
-        var node = svg.selectAll(".node")
-          .data(bubble.nodes(classes(root))
-            .filter(function(d) { return !d.children; }))
-          .enter().append("g")
-          .attr("class", "node")
-          .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+        //convert numerical values from strings to numbers
+        data = data.map(function(d){ d.value = +d["age"]; return d; });
 
-        node.append("title")
-          .text(function(d) { return d.className + ": " + format(d.value); });
+        //bubbles needs very specific format, convert data to this.
+        var nodes = bubble.nodes({children:data}).filter(function(d) { return !d.children; });
 
-        node.append("circle")
-          .attr("r", function(d) { return d.r; })
-          .style("fill", function(d) { return color(d.packageName); });
+        //setup the chart
+        var bubbles = svg.append("g")
+          .attr("transform", "translate(250,50)")
+          .selectAll(".bubble")
+          .data(nodes)
+          .enter();
 
-        node.append("text")
-          .attr("dy", ".3em")
-          .style("text-anchor", "middle")
-          .text(function(d) { return d.className.substring(0, d.r / 3); });
-      });
+        //create the bubbles
+        bubbles.append("circle")
+          .attr("r", function(d){ return d.r; })
+          .attr("cx", function(d){ return d.x; })
+          .attr("cy", function(d){ return d.y; })
+          .style("fill", function(d) { return color(d.value); });
 
-      // Returns a flattened hierarchy containing all leaf nodes under the root.
-      function classes(root) {
-        var classes = [];
-
-        function recurse(name, node) {
-          if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
-          else classes.push({packageName: name, className: node.name, value: node.size});
-        }
-
-        recurse(null, root);
-        return {children: classes};
-      }
-
-      d3.select(self.frameElement).style("height", diameter + "px");
-
-      return true;
+        //format the text for each bubble
+        bubbles.append("text")
+          .attr("x", function(d){ return d.x; })
+          .attr("y", function(d){ return d.y + 5; })
+          .attr("text-anchor", "middle")
+          .text(function(d){ return d["age"]; })
+          .style({
+            "fill":"white",
+            "font-family":"Helvetica Neue, Helvetica, Arial, san-serif",
+            "font-size": "12px"
+          });
+      })
     }
   }
 })();

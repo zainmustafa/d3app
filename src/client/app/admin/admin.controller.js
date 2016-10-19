@@ -75,7 +75,6 @@
 
       d3.csv("app/csv/student.csv", type, function(error, data) {
         // vm.properties = Object.getOwnPropertyNames(data[0]).sort();
-        debugger;
         x.domain(data.map(function(d) { return d[vm.xAxis]; }));
         y.domain([0, d3.max(data, function(d) { return d[vm.yAxis]; })]);
 
