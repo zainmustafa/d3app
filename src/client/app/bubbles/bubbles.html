@@ -19,6 +19,20 @@
         </div>
       </div>
       <div class="row">
+        <select ng-model="vm.radius" ng-change="vm.reDraw();">
+          <optgroup label = "Circle Radius">
+            <option ng-repeat="y in vm.properties" value="{{y}}">{{y}}</option>
+          </optgroup>
+        </select>
+        <select ng-model="vm.bubbleTitle" ng-change="vm.reDraw();">
+          <optgroup label = "Circle Title">
+            <option ng-repeat="x in vm.yAxisArray" value="{{x}}">{{x}}</option>
+          </optgroup>
+        </select>
+      </div>
+      <h5>RADIUS: {{vm.radisuDetails[vm.radius]| uppercase}}</h5>
+      <h5>TITLE: {{vm.titleDetails[vm.bubbleTitle] | uppercase}}</h5>
+      <div class="row">
         <div class="col-md-12">
           <div id="circles"></div>
           <svg width="1000" height="1000"></svg>
