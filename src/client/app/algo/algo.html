@@ -1,0 +1,65 @@
+<section class="mainbar">
+  <section class="matter">
+    <!--<script src="src/client/app/lib/d3.min.js"></script>-->
+
+    <div class="container">
+      <div class="row">
+        <div class="widget wviolet">
+          <div ht-widget-header title="{{vm.title}}"></div>
+          <!--<div class="widget-content user">
+            <h3>TODO: Implement Your Features</h3>
+          </div>
+          <div class="widget-foot">
+            <div class="clearfix"></div>
+          </div>-->
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-2">
+                Array Data Order
+              </div>
+              <div class="col-md-10">
+                Length of Array
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <select ng-model="vm.orderType" ng-change="vm.reDraw();">
+                  <optgroup label = "Data Order">
+                    <option ng-repeat="y in vm.orderTypeArr" value="{{y}}">{{y}}</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="col-md-10">
+                <rzslider style="width:30%" rz-slider-options="vm.slider.options" rz-slider-model="vm.slider.value"></rzslider>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+      <br/>
+      <div class="container-fluid">
+        <div class="row">
+          <div ng-repeat="algo in vm.algorithams" style="text-align: center" class="col-md-4">
+            <div class="card">
+              <div class="card-block">
+                <h4 class="card-title">{{algo.title.toUpperCase()}}</h4>
+                <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+              </div>
+              <div class="card-block">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
