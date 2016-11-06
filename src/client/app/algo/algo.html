@@ -46,16 +46,13 @@
       <div class="container-fluid">
         <div class="row">
           <div ng-repeat="algo in vm.algorithams" style="text-align: center" class="col-md-4">
-            <div class="card">
-              <div class="card-block">
-                <h4 class="card-title">{{algo.title.toUpperCase()}}</h4>
-                <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-              </div>
-              <div class="card-block">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
+            <div class="card card-block" style="border: 1px solid;padding: 10px;margin: 10px;">
+              <h4 class="card-title">{{algo.title.toUpperCase()}}</h4>
+              <p style="font-size: 47px;position: relative;margin: 31px !important;" ng-if="vm.bubbleCounter">
+                {{vm.bubbleCounter}}
+              </p>
+              <a ng-click="vm.stopTimer()" class="btn btn-primary">Go somewhere</a>
+              <a ng-click="vm.start()" class="btn btn-primary">Start</a>
             </div>
           </div>
         </div>
