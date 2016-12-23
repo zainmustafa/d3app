@@ -38,6 +38,7 @@
                 <rzslider style="width:30%" rz-slider-options="vm.slider.options" rz-slider-model="vm.slider.value"></rzslider>
               </div>
             </div>
+            <a ng-click="vm.start()" class="btn btn-primary">Start</a>
           </div>
         </div>
       </div>
@@ -45,14 +46,14 @@
       <br/>
       <div class="container-fluid">
         <div class="row">
-          <div ng-repeat="algo in vm.algorithams" style="text-align: center" class="col-md-4">
+          <div ng-repeat="algo in vm.algorithams" style="text-align: center" class="col-md-4 col-lg-4">
             <div class="card card-block" style="border: 1px solid;padding: 10px;margin: 10px;">
               <h4 class="card-title">{{algo.title.toUpperCase()}}</h4>
-              <p style="font-size: 47px;position: relative;margin: 31px !important;" ng-if="vm.bubbleCounter">
-                {{vm.bubbleCounter}}
+              <p style="text-align: center; font-size: 47px;position: relative;margin: 31px !important;" ng-if="algo.counter">
+                {{algo.counter}}
               </p>
               <a ng-click="vm.stopTimer()" class="btn btn-primary">Go somewhere</a>
-              <a ng-click="vm.start()" class="btn btn-primary">Start</a>
+
             </div>
           </div>
         </div>
